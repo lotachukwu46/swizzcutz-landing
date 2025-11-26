@@ -1,26 +1,78 @@
+/* globals.css */
+
+/* Import Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tailwind v4 theme variables */
+@theme {
+  /* Font */
+  --font-display: "Inter", sans-serif;
+
+  /* Colors — Apple Black + Premium Gold */
+  --color-background: oklch(0.13 0 0); /* deep soft black (not harsh) */
+  --color-foreground: oklch(0.98 0 0); /* premium off-white */
+
+  --color-card: oklch(0.17 0 0);
+  --color-card-foreground: oklch(0.98 0 0);
+
+  --color-popover: oklch(0.15 0 0);
+  --color-popover-foreground: oklch(0.98 0 0);
+
+  /* Rich Gold — smoother, less saturated → more luxury */
+  --color-primary: oklch(0.72 0.17 85);
+  --color-primary-foreground: oklch(0.15 0 0);
+
+  --color-secondary: oklch(0.22 0 0);
+  --color-secondary-foreground: oklch(0.98 0 0);
+
+  --color-muted: oklch(0.3 0 0);
+  --color-muted-foreground: oklch(0.7 0 0);
+
+  --color-accent: oklch(0.72 0.17 85);
+  --color-accent-foreground: oklch(0.15 0 0);
+
+  --color-destructive: oklch(0.6 0.2 30);
+  --color-destructive-foreground: oklch(0.98 0 0);
+
+  --color-border: oklch(0.25 0 0);
+  --color-input: oklch(0.25 0 0);
+  --color-ring: oklch(0.72 0.17 85);
+
+  --radius: 0.75rem;
+
+  /* Gold Shades */
+  --color-gold-light: oklch(0.82 0.12 85);
+  --color-gold-dark: oklch(0.55 0.12 85);
+
+  /* Gradients */
+  --gradient-gold: linear-gradient(
+    135deg,
+    oklch(0.82 0.12 85),
+    oklch(0.55 0.12 85)
+  );
+  --gradient-dark: linear-gradient(180deg, oklch(0.13 0 0), oklch(0.17 0 0));
+
+  /* Shadows */
+  --shadow-gold: 0 10px 40px -10px oklch(0.82 0.12 85 / 0.3);
+  --shadow-elevated: 0 20px 60px -15px oklch(0 0 0 / 0.5);
+
+  /* Transition */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-display);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
 }
