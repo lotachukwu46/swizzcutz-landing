@@ -1,18 +1,18 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Phone,
-  MessageCircle,
-  Menu,
-  X,
   Home,
-  Scissors,
   Image,
   Mail,
-  User,
+  Menu,
+  MessageCircle,
+  Phone,
+  Scissors,
   Sparkles,
+  User,
+  X,
 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const FloatingDock = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,13 +33,13 @@ const FloatingDock = () => {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2348012345678?text=Hello%20Swizz%20Cuts!%20I'd%20like%20to%20book%20a%20home%20service.",
+      "https://wa.me/2349055504893?text=Hello%20Swizz%20Cuts!%20I'd%20like%20to%20book%20a%20home%20service.",
       "_blank"
     );
   };
 
   const handleCall = () => {
-    window.location.href = "tel:+2348012345678";
+    window.location.href = "tel:+2349055504893";
   };
 
   const scrollToSection = (id: string) => {
@@ -64,7 +64,8 @@ const FloatingDock = () => {
     <>
       {/* Floating Buttons */}
       <motion.div
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3"
+        className="fixed right-4 sm:right-6 z-50 flex flex-col gap-2 sm:gap-3"
+        style={{ bottom: isExpanded ? "120px" : "24px" }} // SHIFT UP WHEN EXPANDED
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{
           opacity: isVisible ? 1 : 0,
@@ -87,11 +88,6 @@ const FloatingDock = () => {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          {/* Tooltip */}
-          <div className="absolute -left-full sm:-left-[120%] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-            Book on WhatsApp
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-2 h-2 bg-foreground rotate-45"></div>
-          </div>
         </motion.button>
 
         {/* Call */}
@@ -103,10 +99,6 @@ const FloatingDock = () => {
           title="Call Now"
         >
           <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
-          <div className="absolute -left-full sm:-left-[120%] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-50">
-            Call Now
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-2 h-2 bg-foreground rotate-45"></div>
-          </div>
         </motion.button>
 
         {/* Menu */}
@@ -147,7 +139,6 @@ const FloatingDock = () => {
       <AnimatePresence>
         {isExpanded && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
@@ -156,7 +147,6 @@ const FloatingDock = () => {
               onClick={() => setIsExpanded(false)}
             />
 
-            {/* Dock */}
             <motion.div
               className="fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-xl border-t-2 border-primary/20 shadow-2xl rounded-t-2xl sm:rounded-t-3xl"
               initial={{ y: "100%" }}
@@ -165,7 +155,6 @@ const FloatingDock = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
               <div className="container mx-auto px-4 py-4 sm:py-6">
-                {/* Header */}
                 <div className="flex items-center justify-center gap-2 mb-4 sm:mb-6">
                   <Sparkles className="h-4 w-4 text-primary" />
                   <span className="text-sm font-semibold text-foreground">
@@ -174,7 +163,6 @@ const FloatingDock = () => {
                   <Sparkles className="h-4 w-4 text-primary" />
                 </div>
 
-                {/* Grid Navigation */}
                 <div className="grid grid-cols-5 gap-2 sm:gap-3 max-w-md mx-auto">
                   {dockItems.map((item, idx) => {
                     const Icon = item.icon;
@@ -193,7 +181,7 @@ const FloatingDock = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-primary/10 flex items-center justify-center">
                           <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                         </div>
                         <span className="text-xs font-medium text-muted-foreground text-center leading-tight">
@@ -204,7 +192,6 @@ const FloatingDock = () => {
                   })}
                 </div>
 
-                {/* Close hint */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
